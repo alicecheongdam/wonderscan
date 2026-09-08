@@ -471,7 +471,6 @@ export const characterUi = {
   ko: {
     sectionLabel: "당신의 타입",
     sectionNote: "테리 킴의 12가지 운영 캐릭터 중 현재 가장 필요한 역할",
-    typeCaption: "12가지 운영 캐릭터 중",
     traitsLabel: "이 캐릭터의 특징",
     principleLabel: "테리의 원칙",
     questionsLabel: "지금 확인해야 할 질문",
@@ -481,7 +480,6 @@ export const characterUi = {
   en: {
     sectionLabel: "Your type",
     sectionNote: "The role your bar needs most, from Terry Kim's twelve operating characters",
-    typeCaption: "One of twelve operating characters",
     traitsLabel: "Signature traits",
     principleLabel: "Terry's principle",
     questionsLabel: "Questions to check now",
