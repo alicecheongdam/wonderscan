@@ -252,9 +252,8 @@ function renderResult() {
   fragment.querySelector("#restart").textContent = copy.restart;
   fragment.querySelector("#copy-summary").textContent = state.copied ? copy.copied : copy.copy;
   fragment.querySelector("#result-kicker").textContent = `${state.lead.companyName} · ${copy.path[state.path]}`;
-  // The hero now leads with the character name; the original type name is kept
-  // underneath so the existing vocabulary is not lost.
-  fragment.querySelector("#type-caption").textContent = character ? characterCopy.typeCaption : "";
+  // The hero now leads with the character name as a true h1; the original
+  // type name is kept underneath so the existing vocabulary is not lost.
   fragment.querySelector("#profile-code").textContent = result.profile.code;
   fragment.querySelector("#profile-name").textContent = character ? character.name : result.profile.typeName;
   fragment.querySelector("#profile-subname").textContent = character ? result.profile.typeName : "";
