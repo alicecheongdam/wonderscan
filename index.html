@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Wonder Scan — a 30-question preliminary diagnostic for bars."
+    />
+    <title>Wonder Lab Bar Diagnostic</title>
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <!-- JavaScript mounts one of the semantic screen templates into this region. -->
+    <div id="app"></div>
+
+    <noscript>
+      <p class="noscript-message">Wonder Scan requires JavaScript to run.</p>
+    </noscript>
+
+    <!-- Shared brand mark. Kept in HTML so document structure stays out of JS. -->
+    <template id="brand-template">
+      <div class="brand" aria-label="Wonder Lab">
+        <svg width="38" height="38" viewBox="0 0 38 38" role="img" aria-hidden="true">
+          <circle cx="19" cy="19" r="17.5" fill="none" stroke="currentColor"></circle>
+          <path d="M9 12l4.8 15L19 15l5.2 12L29 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+        </svg>
+        <span><b>WONDER LAB</b><small>BAR CONSULTING</small></span>
+      </div>
+    </template>
+
+    <template id="start-template">
+      <main class="shell start-shell">
+        <header class="topbar">
+          <div data-brand></div>
+          <div class="top-actions">
+            <span class="edition">WONDER SCAN · 04</span>
+            <div class="language-switch" role="group"><button type="button" data-locale="ko">KR</button><button type="button" data-locale="en">EN</button></div>
+          </div>
+        </header>
+        <section class="start-grid">
+          <div class="intro">
+            <p class="kicker" data-copy="startKicker"></p>
+            <h1 id="start-title"></h1>
+            <p class="lede" data-copy="startLede"></p>
+            <div class="meta-row" id="meta-row"></div>
+          </div>
+          <form class="lead-panel" id="lead-form">
+            <div class="lead-heading"><span>STEP 01</span><h2 data-copy="infoTitle"></h2><p data-copy="infoText"></p></div>
+            <div class="form-grid">
+              <label><span data-field="company"></span><input name="companyName" required autocomplete="organization" /></label>
+              <label><span data-field="venue"></span><input name="venueName" /></label>
+              <label><span data-field="name"></span><input name="contactName" required autocomplete="name" /></label>
+              <label><span data-field="role"></span><select name="contactRole" required></select></label>
+              <label><span data-field="email"></span><input name="email" required type="email" autocomplete="email" placeholder="name@company.com" /></label>
+              <label><span data-field="phone"></span><input name="phone" type="tel" autocomplete="tel" /></label>
+              <label><span data-field="location"></span><input name="location" required autocomplete="address-level2" /></label>
+              <label><span data-field="website"></span><input name="website" type="url" placeholder="https://" /></label>
+              <label class="honeypot" aria-hidden="true"><span>Fax</span><input name="companyFax" tabindex="-1" autocomplete="off" /></label>
+            </div>
+            <fieldset class="path-fieldset">
+              <legend data-copy="choosePath"></legend>
+              <button type="button" class="path-card" data-path="preopen"><span class="path-index">A</span><span><b data-copy="preopenTitle"></b><small data-copy="preopenText"></small></span><span class="choice-mark">○</span></button>
+              <button type="button" class="path-card" data-path="operating"><span class="path-index">B</span><span><b data-copy="operatingTitle"></b><small data-copy="operatingText"></small></span><span class="choice-mark">○</span></button>
+            </fieldset>
+            <label class="consent-row"><input name="consent" required type="checkbox" /><span data-copy="consent"></span></label>
+            <p class="form-error" id="form-error" role="alert" hidden></p>
+            <button class="primary lead-submit" type="submit"><span data-copy="begin"></span><span>→</span></button>
+            <p class="privacy-note" data-copy="privacy"></p>
+          </form>
+        </section>
+        <footer class="start-footer"><span>WONDER LAB · SEOUL</span><span>DIAGNOSE BEFORE DESIGN</span></footer>
+      </main>
+    </template>
+
+    <template id="quiz-template">
+      <main class="quiz-layout">
+        <aside class="quiz-rail">
+          <div class="rail-brand"><div data-brand></div><div class="language-switch inverse-switch" role="group"><button type="button" data-locale="ko">KR</button><button type="button" data-locale="en">EN</button></div></div>
+          <div class="rail-middle">
+            <p class="kicker" id="quiz-path"></p>
+            <strong><span id="question-number"></span> <i id="question-total"></i></strong>
+            <div class="progress-track" id="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100"><span></span></div>
+            <p id="progress-copy"></p>
+          </div>
+          <button class="text-button" id="exit-quiz"></button>
+        </aside>
+        <section class="question-stage">
+          <div class="question-card">
+            <div class="question-head"><span id="question-eyebrow"></span><span id="question-dimension"></span></div>
+            <h1 id="question-title"></h1>
+            <p class="question-help" id="question-help"></p>
+            <div class="choices" id="choices" role="radiogroup"></div>
+            <div class="quiz-actions"><button class="secondary" id="previous-question"></button><button class="primary" id="next-question"><span></span><span>→</span></button></div>
+          </div>
+        </section>
+      </main>
+    </template>
+
+    <template id="result-template">
+      <main class="result-page">
+        <header class="result-topbar">
+          <div data-brand></div>
+          <div><div class="language-switch" role="group"><button type="button" data-locale="ko">KR</button><button type="button" data-locale="en">EN</button></div><button class="text-button" id="restart"></button><button class="primary compact" id="copy-summary"></button></div>
+        </header>
+        <div class="submission-banner" id="submission-banner" aria-live="polite"></div>
+        <section class="result-hero">
+          <div class="result-title"><p class="kicker" id="result-kicker"></p><h1><span id="profile-code"></span><span id="profile-name"></span></h1><p id="profile-summary"></p><div class="fit-badge" id="fit-badge"><b></b><span></span></div></div>
+          <div class="score-wrap"><div class="score-ring" id="score-ring"><div><strong></strong><span>/ 100</span></div></div><b id="score-title"></b><small id="score-label"></small></div>
+        </section>
+        <section class="feedback-section"><div class="section-heading wide"><span>01</span><h2 id="feedback-title"></h2><small id="feedback-note"></small></div><article class="terry-feedback-card"><div class="terry-mark"><span>TERRY KIM</span><b>FIELD NOTE</b></div><p id="terry-feedback"></p></article></section>
+        <section class="result-grid">
+          <div class="score-panel panel"><div class="section-heading"><span>02</span><h2 id="scores-title"></h2><small id="scores-note"></small></div><div class="dimension-list compact-list" id="dimension-list"></div></div>
+          <aside class="priority-panel panel"><div class="section-heading"><span>03</span><h2 id="priority-title"></h2></div><ol id="priority-list"></ol><div class="risk-box" id="risk-box" hidden><b></b><ul></ul></div></aside>
+        </section>
+        <section class="swot-section"><div class="section-heading wide"><span>04</span><h2 id="swot-title"></h2><small id="swot-note"></small></div><div class="swot-grid" id="swot-grid"></div></section>
+        <section class="modules-section"><div class="section-heading wide"><span>05</span><h2 id="paid-title"></h2><small id="paid-note"></small></div><div class="module-grid" id="module-grid"></div></section>
+        <section class="business-model"><div class="free-side"><span>OPEN DIAGNOSTIC</span><h2 id="free-title"></h2><ul id="free-items"></ul></div><div class="paid-side"><span>PAID CONSULTING</span><h2 id="deep-title"></h2><ul id="deep-items"></ul></div></section>
+        <section class="recommendation"><div class="level-number"><span id="recommended-label"></span><strong id="level-number"></strong></div><div class="level-copy"><p>WONDER LAB CONSULTING</p><h2 id="level-name"></h2><b id="level-korean-name"></b><p id="level-responsibility"></p></div><div class="first-step"><span id="next-step-label"></span><p id="first-step"></p><button class="inverse" id="request-copy"></button></div></section>
+        <p class="disclaimer" id="disclaimer"></p>
+      </main>
+    </template>
+
+    <script type="module" src="./js/app.js"></script>
+  </body>
+</html>
