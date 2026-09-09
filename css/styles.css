@@ -121,8 +121,8 @@ button:focus-visible { outline: 3px solid #2e6f9a; outline-offset: 3px; }
 .submission-banner.failed { border-left: 4px solid var(--red); background: rgba(153,80,74,.06); }
 .submission-banner button { margin-left: auto; padding: 8px 12px; border: 1px solid var(--ink); background: transparent; cursor: pointer; font-size: 11px; }
 .result-hero { min-height: 440px; display: grid; grid-template-columns: 1fr 250px; align-items: center; gap: 60px; padding: 70px 5vw 70px 0; border-bottom: 1px solid var(--line); }
-.result-title h1 { margin: 0; font-family: Georgia, "Noto Serif KR", serif; font-size: clamp(36px, 4.2vw, 64px); font-weight: 400; line-height: 1.12; letter-spacing: -.02em; word-break: keep-all; }
-.profile-code-badge { display: block; margin-bottom: 16px; color: var(--copper); font-family: Arial, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .28em; text-transform: uppercase; }
+.result-title h1 { margin: 0; font-family: Georgia, "Noto Serif KR", serif; font-size: clamp(44px, 5.6vw, 84px); font-weight: 400; line-height: 1.03; letter-spacing: -.04em; word-break: keep-all; }
+.character-name-line { margin: 18px 0 0; max-width: 640px; color: #55514a; font-family: Arial, "Noto Sans KR", sans-serif; font-size: 16px; font-weight: 400; line-height: 1.55; letter-spacing: .002em; word-break: keep-all; }
 .result-title > p:not(.kicker) { max-width: 710px; margin: 28px 0; color: #494640; font-size: 18px; line-height: 1.7; }
 .fit-badge { max-width: 760px; display: grid; grid-template-columns: 130px 1fr; align-items: center; gap: 22px; padding: 15px 18px; border-left: 4px solid; background: #e9e4da; }
 .fit-badge b { font-size: 13px; }
@@ -139,7 +139,7 @@ button:focus-visible { outline: 3px solid #2e6f9a; outline-offset: 3px; }
 .score-wrap > b { margin-top: 6px; font-size: 13px; }
 .score-wrap > small { color: var(--muted); font-size: 11px; }
 /* --- Character result block (MBTI-style type card) ------------------------ */
-.type-subname { margin: 18px 0 0 !important; color: var(--copper); font-size: 13px !important; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.type-subname { margin: 22px 0 0 !important; color: var(--copper); font-size: 13px !important; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
 .type-subname:empty { display: none; }
 .character-section { padding: 68px 0; border-bottom: 1px solid var(--line); }
 .character-card { display: grid; grid-template-columns: minmax(240px, .38fr) 1fr; border: 1px solid var(--ink); background: #e8e3d9; }
@@ -361,7 +361,7 @@ button:focus-visible { outline: 3px solid #2e6f9a; outline-offset: 3px; }
   .start-footer { display: none; }
   .result-topbar .text-button { display: none; }
   .result-hero { gap: 35px; }
-  .result-title h1 { font-size: 32px; line-height: 1.18; }
+  .result-title h1 { font-size: 42px; line-height: 1.08; }
   .fit-badge { grid-template-columns: 1fr; gap: 8px; }
   .section-heading { grid-template-columns: 30px 1fr; }
   .section-heading small { display: none; }
