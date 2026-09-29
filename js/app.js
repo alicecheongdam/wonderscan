@@ -339,4 +339,32 @@ function render() {
   return renderStart();
 }
 
+// --- Keyboard Navigation for Quiz ---
+document.addEventListener("keydown", (event) => {
+  // Only apply keyboard shortcuts when the user is actively on the quiz screen
+  if (state.screen !== "quiz") return;
+
+  const key = event.key.toLowerCase();
+  const questions = getQuestions(state.path, state.locale);
+  const question = questions[state.questionIndex];
+  
+  // Map keyboard letters to choice indexes
+  const keyMap = { 'a': 0, 'b': 1, 'c': 2, 'd': 3 };
+
+  // Handle choice selection (A, B, C, D)
+  if (key in keyMap && keyMap[key] < question.choices.length) {
+    state.answers[question.id] = keyMap[key];
+    render();
+  }
+
+  // Handle Enter key to proceed to the next question
+  if (key === "enter") {
+    const nextBtn = document.getElementById("next-question");
+    // Ensure a choice has been made (button is not disabled) before proceeding
+    if (nextBtn && !nextBtn.disabled) {
+      nextBtn.click();
+    }
+  }
+});
+
 render();
