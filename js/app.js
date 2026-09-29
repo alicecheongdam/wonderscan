@@ -274,7 +274,9 @@ function renderResult() {
   fragment.querySelector("#scores-note").textContent = copy.scoresNote;
   fragment.querySelector("#priority-title").textContent = copy.priorityTitle;
   fragment.querySelector("#dimension-list").innerHTML = orderedScores.map((item, index) => {
-    const barColor = item.score <= 33 ? "#E94054" : item.score <= 66 ? "#EBB63C" : "#2B9D4A";
+    // Use the CSS variables that match the SWOT section colors
+    const barColor = item.score <= 33 ? "var(--red)" : item.score <= 66 ? "var(--amber)" : "var(--green)";
+    
     return `<div class="dimension-row"><span>${String(index + 1).padStart(2, "0")}</span><b>${escapeHtml(item.label)}</b><div class="bar"><i style="width:${item.score}%; background-color: ${barColor};"></i></div><strong>${item.score}</strong></div>`;
   }).join("");
   fragment.querySelector("#priority-list").innerHTML = result.priorities.map((item, index) => `<li><span>${index + 1}</span><div><b>${escapeHtml(item.label)}</b><small>${escapeHtml(item.score < 50 ? copy.urgent : item.score < 65 ? copy.priority : copy.room)}</small></div><strong>${item.score}</strong></li>`).join("");
