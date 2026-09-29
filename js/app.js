@@ -273,7 +273,10 @@ function renderResult() {
   fragment.querySelector("#scores-title").textContent = copy.scoresTitle;
   fragment.querySelector("#scores-note").textContent = copy.scoresNote;
   fragment.querySelector("#priority-title").textContent = copy.priorityTitle;
-  fragment.querySelector("#dimension-list").innerHTML = orderedScores.map((item, index) => `<div class="dimension-row"><span>${String(index + 1).padStart(2, "0")}</span><b>${escapeHtml(item.label)}</b><div class="bar"><i style="width:${item.score}%"></i></div><strong>${item.score}</strong></div>`).join("");
+  fragment.querySelector("#dimension-list").innerHTML = orderedScores.map((item, index) => {
+    const barColor = item.score <= 33 ? "#E94054" : item.score <= 66 ? "#EBB63C" : "#2B9D4A";
+    return `<div class="dimension-row"><span>${String(index + 1).padStart(2, "0")}</span><b>${escapeHtml(item.label)}</b><div class="bar"><i style="width:${item.score}%; background-color: ${barColor};"></i></div><strong>${item.score}</strong></div>`;
+  }).join("");
   fragment.querySelector("#priority-list").innerHTML = result.priorities.map((item, index) => `<li><span>${index + 1}</span><div><b>${escapeHtml(item.label)}</b><small>${escapeHtml(item.score < 50 ? copy.urgent : item.score < 65 ? copy.priority : copy.room)}</small></div><strong>${item.score}</strong></li>`).join("");
   if (result.redFlags.length) {
     const riskBox = fragment.querySelector("#risk-box");
